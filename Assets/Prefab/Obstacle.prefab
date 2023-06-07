@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 250824165025586996}
   m_Layer: 0
   m_Name: Obstacle2
-  m_TagString: Untagged
+  m_TagString: Column
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 250824165757329954}
   m_Layer: 0
   m_Name: Obstacle1
-  m_TagString: Untagged
+  m_TagString: Column
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,9 +286,10 @@ GameObject:
   m_Component:
   - component: {fileID: 250824165908837914}
   - component: {fileID: 250824165908837909}
+  - component: {fileID: 2407874095834786715}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,3 +337,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1465249, y: 4.3700695}
   m_EdgeRadius: 0
+--- !u!114 &2407874095834786715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250824165908837908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56c3179c09499d408961803cbe69438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
