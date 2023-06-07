@@ -16,10 +16,14 @@ public class Fish : MonoBehaviour
     public Sprite fishDied;
     SpriteRenderer sp;
     Animator anim;
+    public ObstacleSpawner obstaclespawner;
+    [SerializeField] private AudioSource swim,hit,point;
     // Start is called before the first frame update
     void Start()
     {
+
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
         //rb.gravityScale = 0;
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -40,8 +44,21 @@ public class Fish : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && GameManager.gameOver == false)
         {
-            rb.velocity = Vector2.zero;
-            rb.velocity = new Vector2(rb.velocity.x, speed);
+            swim.Play();
+            if (GameManager.gameStarted == false)
+            {
+                rb.gravityScale = 3f;
+                rb.velocity = Vector2.zero;
+                rb.velocity = new Vector2(rb.velocity.x, speed);
+                obstaclespawner.InstantiateObstacle();
+                gameManager.GameHasStarted();
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+                rb.velocity = new Vector2(rb.velocity.x, speed);
+            }
+            
         }
     }
 
@@ -74,16 +91,22 @@ public class Fish : MonoBehaviour
         {
             // Debug.Log("Scored...");
             score.Scored();
+            point.Play();
         }
-        else if (collision.CompareTag("Column"))
+        else if (collision.CompareTag("Column") && GameManager.gameOver == false)
         {
             if (GameManager.gameOver == false)
             {
-                // game over
+                fishDieEffect();
                 gameManager.GameOver();
                 GameOver();
             }
         }
+    }
+
+    void fishDieEffect()
+    {
+        hit.Play();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -93,6 +116,7 @@ public class Fish : MonoBehaviour
             if (GameManager.gameOver == false)
             {
                 // game over
+                fishDieEffect();
                 gameManager.GameOver();
                 GameOver();
             }
